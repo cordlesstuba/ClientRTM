@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@color/colorPrimary"
+    >
+
+
+    <ImageView
+        android:id="@+id/imgViewBackToSelectAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_back_white"
+        android:adjustViewBounds="true"
+        android:maxWidth="35dp"
+        android:maxHeight="35dp"
+        android:scaleType="fitCenter"
+        android:layout_centerVertical="true"
+        />
+
+    <HorizontalScrollView
+        android:layout_toRightOf="@+id/imgViewBackToSelectAddress"
+        android:layout_toLeftOf="@+id/imgViewGoToValidateParameters"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="15dp"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cicruit le plus rapide"/>
+                <CheckBox
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cicruit le plus court"/>
+                <CheckBox
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cicruit le plus safe"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical">
+
+                <CheckBox
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cicruit le moins polluant"/>
+                <CheckBox
+                    android:textColor="@android:color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Cicruit avec le moins d'intersections"/>
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+
+
+    </HorizontalScrollView>
+
+
+
+
+
+    <ImageView
+        android:id="@+id/imgViewGoToValidateParameters"
+        android:layout_alignParentRight="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_forward_white"
+        android:adjustViewBounds="true"
+        android:maxWidth="35dp"
+        android:maxHeight="35dp"
+        android:scaleType="fitCenter"
+        android:layout_centerVertical="true"
+        />
+
+</RelativeLayout>

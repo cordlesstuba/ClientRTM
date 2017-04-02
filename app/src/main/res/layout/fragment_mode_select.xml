@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@color/colorPrimary"
+    android:weightSum="100"
+    >
+
+
+    <TextView
+        android:id="@+id/txtViewModeRoute"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Mode route"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:layout_weight="50"
+        android:textColor="@android:color/white"/>
+
+    <TextView
+        android:id="@+id/txtViewModeCircuit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="50"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:text="Mode circuit"
+        android:textColor="@android:color/white"/>
+
+
+</LinearLayout>
