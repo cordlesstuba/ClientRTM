@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="120dp"
-    android:background="@color/colorPrimary"
-    >
+    android:background="@color/colorPrimary">
 
 
     <ImageView
@@ -29,21 +29,24 @@
         android:padding="15dp"
         android:orientation="vertical">
 
-        <AutoCompleteTextView
-            android:layout_weight="50"
-            android:textColor="@android:color/white"
-            android:textColorHint="@android:color/holo_green_light"
-            android:hint="Adresse de départ.."
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
-        <AutoCompleteTextView
-            android:textColor="@android:color/white"
-            android:hint="Adresse d'arrivée.."
-            android:textColorHint="@android:color/holo_red_light"
-            android:layout_weight="50"
+        <com.seatgeek.placesautocomplete.PlacesAutocompleteTextView
+            android:id="@+id/autocompleteTxtViewDepart"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"
+            android:hint="Adresse de départ.."
+            android:textColor="@android:color/white"
+            android:singleLine="true"
+            app:pacv_googleMapsApiKey="AIzaSyAzFKnN_R1Sn2GLegJFcCO9QWIgBFFeUJ8"/>
+
+        <com.seatgeek.placesautocomplete.PlacesAutocompleteTextView
+            android:id="@+id/autocompleteTxtViewArrivee"
+            android:layout_width="match_parent"
+            android:textColor="@android:color/white"
+            android:layout_height="wrap_content"
+            android:hint="Adresse d'arrivée.."
+            android:singleLine="true"
+            app:pacv_googleMapsApiKey="AIzaSyAzFKnN_R1Sn2GLegJFcCO9QWIgBFFeUJ8"/>
 
 
     </LinearLayout>
