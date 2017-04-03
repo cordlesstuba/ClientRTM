@@ -12,22 +12,23 @@ import android.widget.ImageView;
 
 import com.altran.clientrtm.R;
 import com.altran.clientrtm.activities.MainActivity;
+import com.altran.clientrtm.googlePlace.PlacesDetails;
+import com.google.android.gms.maps.model.LatLng;
 import com.seatgeek.placesautocomplete.OnPlaceSelectedListener;
 import com.seatgeek.placesautocomplete.PlacesAutocompleteTextView;
 import com.seatgeek.placesautocomplete.model.Place;
+
+import java.net.URISyntaxException;
 
 public class SelectAddressFragment extends Fragment {
 
     private ImageView imgViewBackToSelectMode;
     private ImageView imgViewGoToSelectParameters;
 
-    PlacesAutocompleteTextView autocompleteTextViewDepart;
-    PlacesAutocompleteTextView autocompleteTextViewArrivee;
-    
+    PlacesAutocompleteTextView autocompleteTxtViewDepart;
+    PlacesAutocompleteTextView autocompleteTxtViewArrivee;
 
-    final int PLACES=0;
-    final int PLACES_DETAILS=1;
-
+    int placeNumber = 0;
 
 
     @Override
@@ -55,18 +56,47 @@ public class SelectAddressFragment extends Fragment {
             }
         });
 
-        autocompleteTextViewDepart = (PlacesAutocompleteTextView) view.findViewById(R.id.autocompleteTxtViewDepart);
-        autocompleteTextViewDepart.setOnPlaceSelectedListener(
+        autocompleteTxtViewDepart = (PlacesAutocompleteTextView) view.findViewById(R.id.autocompleteTxtViewDepart);
+        autocompleteTxtViewDepart.setOnPlaceSelectedListener(
                 new OnPlaceSelectedListener() {
                     @Override
                     public void onPlaceSelected(final Place place) {
 
                         System.out.println(place);
                         System.out.println(place.description + " " + place.place_id + " " + place.terms + " " + place.types + " " + place.matched_substrings + " " + place.toString());
+                        placeNumber = 0;
+                        PlacesDetails placesDetails = new PlacesDetails(place.place_id);
+                        try {
+                            placesDetails.loadDetails(placeNumber);
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
                 }
         );
 
+        autocompleteTxtViewArrivee = (PlacesAutocompleteTextView) view.findViewById(R.id.autocompleteTxtViewArrivee);
+        autocompleteTxtViewArrivee.setOnPlaceSelectedListener(
+                new OnPlaceSelectedListener() {
+                    @Override
+                    public void onPlaceSelected(final Place place) {
+
+                        System.out.println(place);
+                        System.out.println(place.description + " " + place.place_id + " " + place.terms + " " + place.types + " " + place.matched_substrings + " " + place.toString());
+                        placeNumber = 1;
+                        PlacesDetails placesDetails = new PlacesDetails(place.place_id);
+                        try {
+                            placesDetails.loadDetails(placeNumber);
+                        } catch (URISyntaxException e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                }
+        );
 
 
         return view;
