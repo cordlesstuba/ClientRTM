@@ -21,7 +21,6 @@
 
     <HorizontalScrollView
         android:layout_toRightOf="@+id/imgViewBackToSelectAddress"
-        android:layout_toLeftOf="@+id/imgViewGoToValidateParameters"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="15dp"
@@ -39,16 +38,19 @@
                 android:orientation="vertical">
 
                 <CheckBox
+                    android:id="@+id/checkBoxPlusRapide"
                     android:textColor="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cicruit le plus rapide"/>
                 <CheckBox
+                    android:id="@+id/checkBoxPlusCourt"
                     android:textColor="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Cicruit le plus court"/>
                 <CheckBox
+                    android:id="@+id/checkBoxPlusSafe"
                     android:textColor="@android:color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -78,30 +80,10 @@
 
             </LinearLayout>
 
-
-
         </LinearLayout>
-
-
 
 
     </HorizontalScrollView>
 
-
-
-
-
-    <ImageView
-        android:id="@+id/imgViewGoToValidateParameters"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_forward_white"
-        android:adjustViewBounds="true"
-        android:maxWidth="35dp"
-        android:maxHeight="35dp"
-        android:scaleType="fitCenter"
-        android:layout_centerVertical="true"
-        />
 
 </RelativeLayout>

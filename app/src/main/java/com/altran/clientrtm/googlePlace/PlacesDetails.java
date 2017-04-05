@@ -28,10 +28,10 @@ public class PlacesDetails {
     static LatLng latLng = null;
 
     public PlacesDetails(String PLACE_ID) {
-        this.PLACE_ID = PLACE_ID;
+        PlacesDetails.PLACE_ID = PLACE_ID;
     }
 
-    public void loadDetails(final int placeNumber) throws URISyntaxException {
+    public LatLng loadDetails(final int placeNumber) throws URISyntaxException {
 
             URI uri = new URIBuilder()
                     .setScheme("https")
@@ -44,7 +44,6 @@ public class PlacesDetails {
             System.out.println("URI BUILDER NEW: " + uri);
 
             AsyncHttpClient client = new AsyncHttpClient();
-            client.setMaxRetriesAndTimeout(5,200);
             client.get(String.valueOf(uri), new AsyncHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
@@ -59,14 +58,22 @@ public class PlacesDetails {
 
                         latLng = new LatLng(lat,lng);
 
+
+                        switch (placeNumber){
+                            case 0:
+                                MainActivity.setAddressDepart(PLACE_ID,latLng);
+                                break;
+                            case 1:
+                                MainActivity.setAddressArrivee(PLACE_ID,latLng);
+                                break;
+                        }
+
+
+
                         MainActivity.AddMarker(latLng,placeNumber);
 
-                        System.out.println("latLnglatLng" + latLng);
 
-
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    } catch (JSONException e) {
+                    } catch (UnsupportedEncodingException | JSONException e) {
                         e.printStackTrace();
                     }
                 }
@@ -76,7 +83,12 @@ public class PlacesDetails {
                     Log.e("ERROR HTTP : ", String.valueOf(statusCode));
                 }
 
+
+
+
             });
+
+        return latLng;
 
     }
 

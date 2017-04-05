@@ -8,9 +8,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.altran.clientrtm.R;
+import com.altran.clientrtm.activities.Address;
 import com.altran.clientrtm.activities.MainActivity;
 import com.altran.clientrtm.googlePlace.PlacesDetails;
 import com.google.android.gms.maps.model.LatLng;
@@ -38,67 +41,69 @@ public class SelectAddressFragment extends Fragment {
         imgViewBackToSelectMode = (ImageView) view.findViewById(R.id.imgViewBackToSelectMode);
         imgViewGoToSelectParameters = (ImageView) view.findViewById(R.id.imgViewGoToSelectParameters);
 
-        imgViewBackToSelectMode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        imgViewBackToSelectMode.setOnClickListener(v -> {
 
-                if (getFragmentManager().getBackStackEntryCount() > 0) {
-                    getFragmentManager().popBackStack();
-                }
+            if (getFragmentManager().getBackStackEntryCount() > 0) {
+                getFragmentManager().popBackStack();
             }
         });
 
-        imgViewGoToSelectParameters.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        imgViewGoToSelectParameters.setOnClickListener(v -> {
+
+            if (autocompleteTxtViewDepart.getText().toString().equals("") || autocompleteTxtViewArrivee.getText().toString().equals(""))
+                ((MainActivity)getActivity()).AlertUser("Veuillez selectionner une adresse de départ et d'arrivée");
+            else{
+
                 SelectParametersFragment selectParametersFragment = new SelectParametersFragment();
                 ((MainActivity)getActivity()).replaceFragmentWithAnimation(selectParametersFragment,"");
             }
+
         });
 
         autocompleteTxtViewDepart = (PlacesAutocompleteTextView) view.findViewById(R.id.autocompleteTxtViewDepart);
         autocompleteTxtViewDepart.setOnPlaceSelectedListener(
-                new OnPlaceSelectedListener() {
-                    @Override
-                    public void onPlaceSelected(final Place place) {
+                place -> {
 
-                        System.out.println(place);
-                        System.out.println(place.description + " " + place.place_id + " " + place.terms + " " + place.types + " " + place.matched_substrings + " " + place.toString());
-                        placeNumber = 0;
-                        PlacesDetails placesDetails = new PlacesDetails(place.place_id);
-                        try {
-                            placesDetails.loadDetails(placeNumber);
-                        } catch (URISyntaxException e) {
-                            e.printStackTrace();
-                        }
+                    placeNumber = 0;
 
 
+
+                    PlacesDetails placesDetails = new PlacesDetails(place.place_id);
+                    try {
+                        placesDetails.loadDetails(placeNumber);
+
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
                     }
+
+
+
+
                 }
         );
 
         autocompleteTxtViewArrivee = (PlacesAutocompleteTextView) view.findViewById(R.id.autocompleteTxtViewArrivee);
         autocompleteTxtViewArrivee.setOnPlaceSelectedListener(
-                new OnPlaceSelectedListener() {
-                    @Override
-                    public void onPlaceSelected(final Place place) {
+                place -> {
 
-                        System.out.println(place);
-                        System.out.println(place.description + " " + place.place_id + " " + place.terms + " " + place.types + " " + place.matched_substrings + " " + place.toString());
-                        placeNumber = 1;
-                        PlacesDetails placesDetails = new PlacesDetails(place.place_id);
-                        try {
-                            placesDetails.loadDetails(placeNumber);
-                        } catch (URISyntaxException e) {
-                            e.printStackTrace();
-                        }
+                    placeNumber = 1;
 
 
+                    ((MainActivity)getActivity()).HIDE_KEYBOARD(getActivity());
+
+                    PlacesDetails placesDetails = new PlacesDetails(place.place_id);
+                    try {
+                        placesDetails.loadDetails(placeNumber);
+                    } catch (URISyntaxException e) {
+                        e.printStackTrace();
                     }
+
+
                 }
         );
 
 
         return view;
     }
+
 }
